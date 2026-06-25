@@ -1,0 +1,15 @@
+{
+  "name": "MartGain",
+  "short_name": "MartGain",
+  "description": "Strategy-first growth marketing agency.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    { "src": "assets/icons/favicon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/favicon-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#050505",
+  "background_color": "#050505",
+  "display": "standalone"
+}
