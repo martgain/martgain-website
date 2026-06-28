@@ -1,28 +1,43 @@
-const WHATSAPP_NUMBER = "201009973780";
+﻿const WHATSAPP_NUMBER = "201009973780";
 const SOCIALS = {
   facebook: "https://www.facebook.com/MartGain/",
   linkedin: "https://linkedin.com/company/martgain"
 };
 const SHARED_TRANSLATIONS = {
   en: {
-    "nav.industries": "Industries",
+    "nav.home": "Home",
+    "nav.services": "Services",
+    "nav.clients": "Clients",
+    "nav.blog": "Blog",
+    "nav.contact": "Contact",
     "nav.skip": "Skip to content",
     "nav.menu": "Menu",
-    "nav.theme": "Toggle theme",
-    "nav.language": "Language"
+    "nav.language": "Language",
+    "footer.text": "We turn random marketing into clear, measurable growth.",
+    "cta.audit": "WhatsApp MartGain",
+    "cta.diagnosis": "WhatsApp MartGain",
+    "cta.form": "Send Request",
+    "final.kicker": "Next Step"
   },
   ar: {
-    "nav.industries": "\u0627\u0644\u0642\u0637\u0627\u0639\u0627\u062a",
+    "nav.home": "\u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629",
+    "nav.services": "\u062e\u062f\u0645\u0627\u062a\u0646\u0627",
+    "nav.clients": "\u0639\u0645\u0644\u0627\u0624\u0646\u0627",
+    "nav.blog": "\u0627\u0644\u0645\u062f\u0648\u0646\u0629",
+    "nav.contact": "\u062a\u0648\u0627\u0635\u0644 \u0645\u0639\u0646\u0627",
     "nav.skip": "\u062a\u062c\u0627\u0648\u0632 \u0625\u0644\u0649 \u0627\u0644\u0645\u062d\u062a\u0648\u0649",
     "nav.menu": "\u0627\u0644\u0642\u0627\u0626\u0645\u0629",
-    "nav.theme": "\u062a\u0628\u062f\u064a\u0644 \u0627\u0644\u0645\u0638\u0647\u0631",
-    "nav.language": "\u0627\u0644\u0644\u063a\u0629"
+    "nav.language": "\u0627\u0644\u0644\u063a\u0629",
+    "footer.text": "\u0646\u062d\u0648\u0651\u0644 \u0627\u0644\u062a\u0633\u0648\u064a\u0642 \u0627\u0644\u0639\u0634\u0648\u0627\u0626\u064a \u0625\u0644\u0649 \u0646\u0645\u0648 \u0648\u0627\u0636\u062d \u0648\u0642\u0627\u0628\u0644 \u0644\u0644\u0642\u064a\u0627\u0633.",
+    "cta.audit": "\u0648\u0627\u062a\u0633\u0627\u0628 \u0645\u0627\u0631\u062a\u062c\u064a\u0646",
+    "cta.diagnosis": "\u0648\u0627\u062a\u0633\u0627\u0628 \u0645\u0627\u0631\u062a\u062c\u064a\u0646",
+    "cta.form": "\u0623\u0631\u0633\u0644 \u0627\u0644\u0637\u0644\u0628",
+    "final.kicker": "\u0627\u0644\u062e\u0637\u0648\u0629 \u0627\u0644\u062a\u0627\u0644\u064a\u0629"
   }
 };
 
 const pageState = {
-  lang: localStorage.getItem("martgainLang") || "en",
-  theme: localStorage.getItem("martgainTheme") || localStorage.getItem("martgain-theme") || "dark"
+  lang: localStorage.getItem("martgainLang") || "en"
 };
 
 window.martgainEvents = window.martgainEvents || [];
@@ -76,11 +91,17 @@ function waUrl(message) {
 }
 
 function syncHeaderLogo() {
-  const fileName = pageState.theme === "dark" ? "logo_dark-site.png" : "logo_light-site.png";
   document.querySelectorAll(".site-header .brand img").forEach((image) => {
     const current = image.getAttribute("src") || "";
-    image.setAttribute("src", current.replace(/logo_(dark|light)(-site)?\.png$/, fileName));
+    image.setAttribute("src", current.replace(/logo_(dark|light)(-site)?\.png$/, "logo_dark-site.png"));
   });
+}
+
+function applyFixedTheme() {
+  document.documentElement.dataset.theme = "dark";
+  document.documentElement.classList.add("theme-dark");
+  document.body.classList.add("theme-dark");
+  syncHeaderLogo();
 }
 
 function applyLanguage(lang) {
@@ -123,28 +144,7 @@ function wireChrome() {
   const skipLink = document.querySelector(".skip-link");
   const mainContent = document.querySelector("#main");
   skipLink?.addEventListener("click", () => mainContent?.focus());
-  const themeButton = document.querySelector("#themeToggle");
-  const applyTheme = (theme) => {
-    pageState.theme = theme === "light" ? "light" : "dark";
-    document.documentElement.dataset.theme = pageState.theme;
-    document.documentElement.classList.toggle("theme-dark", pageState.theme === "dark");
-    document.documentElement.classList.toggle("theme-light", pageState.theme === "light");
-    document.body.classList.toggle("theme-dark", pageState.theme === "dark");
-    localStorage.setItem("martgainTheme", pageState.theme);
-    localStorage.setItem("martgain-theme", pageState.theme);
-    if (themeButton) {
-      themeButton.setAttribute("aria-pressed", pageState.theme === "dark" ? "true" : "false");
-    }
-    syncHeaderLogo();
-  };
-  applyTheme(pageState.theme);
-  syncHeaderLogo();
-  if (themeButton) {
-    themeButton.addEventListener("click", () => {
-      applyTheme(pageState.theme === "dark" ? "light" : "dark");
-      trackEvent("theme_toggle", { theme: pageState.theme, source_section: "header" });
-    });
-  }
+  applyFixedTheme();
 
   const menu = document.querySelector("#menuToggle");
   const nav = document.querySelector("#navLinks");
