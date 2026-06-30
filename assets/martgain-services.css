@@ -98,6 +98,14 @@
     }
     body.theme-dark .service-details summary,
     .dark .service-details summary { color: var(--white); }
+    body.theme-dark .service-card .service-details summary,
+    .dark .service-card .service-details summary,
+    body.theme-dark .service-card .service-details .service-decision strong,
+    .dark .service-card .service-details .service-decision strong,
+    body.theme-dark .service-card .service-details > strong,
+    .dark .service-card .service-details > strong {
+      color: var(--ink);
+    }
     .service-list {
       display: grid;
       gap: 8px;
@@ -279,4 +287,21 @@
     .soft .section-intro .kicker,
     .soft .service-card > .kicker {
       color: var(--ink);
+    }
+
+    /* Final service-card hover interaction override */
+    .service-card {
+      transition: transform .24s var(--ease), border-color .24s var(--ease), box-shadow .24s var(--ease);
+    }
+
+    .service-card:hover,
+    .service-card:focus-within {
+      box-shadow: 0 24px 70px rgba(5,5,5,.08);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .service-card:hover,
+      .service-card:focus-within {
+        transform: none !important;
+      }
     }

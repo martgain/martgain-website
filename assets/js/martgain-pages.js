@@ -13,7 +13,7 @@ const SHARED_TRANSLATIONS = {
     "nav.skip": "Skip to content",
     "nav.menu": "Menu",
     "nav.language": "Language",
-    "footer.text": "We turn random marketing into clear, measurable growth.",
+    "footer.text": "MartGain helps businesses in Egypt, Saudi Arabia, and the UAE turn scattered digital marketing into a smart system for better inquiries and measurable growth.",
     "cta.audit": "WhatsApp MartGain",
     "cta.diagnosis": "WhatsApp MartGain",
     "cta.form": "Send Request",
@@ -122,6 +122,7 @@ function applyLanguage(lang) {
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     const value = dictionary(node.dataset.i18n);
     if (value) node.textContent = value;
+    if (lang === "en" && node.dataset.i18nEn) node.textContent = node.dataset.i18nEn;
   });
   document.querySelectorAll("[data-i18n-aria]").forEach((node) => {
     const value = dictionary(node.dataset.i18nAria);

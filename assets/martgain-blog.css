@@ -8,6 +8,57 @@
       background-size: cover;
       background-position: center right;
     }
+
+    /* Final SVG icon arrow override for clickable article cards */
+    .article-card:not(.planned-card) {
+      padding-bottom: 54px;
+    }
+
+    .article-card:not(.planned-card)::after,
+    body.is-ar .article-card:not(.planned-card)::after {
+      --mg-arrow-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E");
+      content: "" !important;
+      inset: auto 22px 20px auto !important;
+      width: 32px !important;
+      height: 32px !important;
+      border: 0 !important;
+      background: var(--accent);
+      -webkit-mask: var(--mg-arrow-icon) center / contain no-repeat;
+      mask: var(--mg-arrow-icon) center / contain no-repeat;
+      opacity: 1;
+      transform: translateX(0) rotate(0deg) !important;
+      transform-origin: center;
+      transition: transform .2s ease-in-out;
+    }
+
+    .article-card:not(.planned-card):hover::after,
+    .article-card:not(.planned-card):focus-visible::after,
+    body.is-ar .article-card:not(.planned-card):hover::after,
+    body.is-ar .article-card:not(.planned-card):focus-visible::after {
+      transform: translateX(6px) rotate(-40deg) !important;
+    }
+
+    @media (max-width: 760px) {
+      .article-card:not(.planned-card) {
+        padding-bottom: 50px;
+      }
+
+      .article-card:not(.planned-card)::after,
+      body.is-ar .article-card:not(.planned-card)::after {
+        width: 28px !important;
+        height: 28px !important;
+        inset: auto 18px 18px auto !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .article-card:not(.planned-card):hover::after,
+      .article-card:not(.planned-card):focus-visible::after,
+      body.is-ar .article-card:not(.planned-card):hover::after,
+      body.is-ar .article-card:not(.planned-card):focus-visible::after {
+        transform: none !important;
+      }
+    }
     .is-ar .hero {
       background:
         linear-gradient(270deg, rgba(5,5,5,.98), rgba(5,5,5,.78) 48%, rgba(5,5,5,.18)),
@@ -137,6 +188,29 @@
     .article-card:hover {
       box-shadow: 0 18px 44px rgba(8,8,8,.08);
     }
+    .blog-final-cta {
+      background: #050505;
+      color: #fff;
+      padding-top: clamp(48px, 7vw, 86px);
+    }
+    .blog-final-cta-card {
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 8px;
+      background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      padding: clamp(26px, 4vw, 46px);
+      display: grid;
+      gap: 18px;
+      align-items: start;
+    }
+    .blog-final-cta-card h2 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(34px, 4.6vw, 64px);
+      line-height: 1;
+    }
+    .blog-final-cta-card .cta-row {
+      margin-top: 0;
+    }
     .planned-card::after { display: none; }
     .draft-label { display:inline-flex; width:fit-content; margin-top:14px; padding:7px 9px; border:1px solid rgba(var(--accent-rgb),.28); border-radius:8px; color:var(--accent); font-size:12px; font-weight:900; }
     .article-card:focus-visible {
@@ -256,3 +330,88 @@
       .intent-copy,
       .intent-board { padding: 22px; }
     }
+
+/* Final visible SVG arrow icon lock */
+.article-card:not(.planned-card) {
+  padding-bottom: 54px;
+}
+
+.article-card:not(.planned-card)::after,
+body.is-ar .article-card:not(.planned-card)::after {
+  --mg-arrow-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E");
+  content: "" !important;
+  position: absolute;
+  inset: auto 22px 20px auto !important;
+  width: 32px !important;
+  height: 32px !important;
+  border: 0 !important;
+  background: var(--accent) !important;
+  opacity: 1 !important;
+  -webkit-mask: var(--mg-arrow-icon) center / contain no-repeat;
+  mask: var(--mg-arrow-icon) center / contain no-repeat;
+  transform: translateX(0) rotate(0deg) !important;
+  transform-origin: center;
+  transition: transform .2s ease-in-out;
+}
+
+.article-card:not(.planned-card):hover::after,
+.article-card:not(.planned-card):focus-visible::after,
+body.is-ar .article-card:not(.planned-card):hover::after,
+body.is-ar .article-card:not(.planned-card):focus-visible::after {
+  transform: translateX(6px) rotate(-40deg) !important;
+}
+
+@media (max-width: 760px) {
+  .article-card:not(.planned-card) {
+    padding-bottom: 50px;
+  }
+
+  .article-card:not(.planned-card)::after,
+  body.is-ar .article-card:not(.planned-card)::after {
+    width: 28px !important;
+    height: 28px !important;
+    inset: auto 18px 18px auto !important;
+  }
+}
+
+/* Final RTL article-card arrow correction */
+html[dir="rtl"] .article-card:not(.planned-card)::after,
+body.is-ar .article-card:not(.planned-card)::after {
+  --mg-arrow-icon-rtl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5'/%3E%3Cpath d='m11 6-6 6 6 6'/%3E%3C/svg%3E");
+  inset: auto auto 20px 22px !important;
+  -webkit-mask-image: var(--mg-arrow-icon-rtl);
+  mask-image: var(--mg-arrow-icon-rtl);
+  transform: translateX(0) rotate(0deg) !important;
+}
+
+html[dir="rtl"] .article-card:not(.planned-card):hover::after,
+html[dir="rtl"] .article-card:not(.planned-card):focus-visible::after,
+body.is-ar .article-card:not(.planned-card):hover::after,
+body.is-ar .article-card:not(.planned-card):focus-visible::after {
+  transform: translateX(-6px) rotate(40deg) !important;
+}
+
+@media (max-width: 760px) {
+  html[dir="rtl"] .article-card:not(.planned-card)::after,
+  body.is-ar .article-card:not(.planned-card)::after {
+    inset: auto auto 18px 18px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[dir="rtl"] .article-card:not(.planned-card):hover::after,
+  html[dir="rtl"] .article-card:not(.planned-card):focus-visible::after,
+  body.is-ar .article-card:not(.planned-card):hover::after,
+  body.is-ar .article-card:not(.planned-card):focus-visible::after {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-card:not(.planned-card):hover::after,
+  .article-card:not(.planned-card):focus-visible::after,
+  body.is-ar .article-card:not(.planned-card):hover::after,
+  body.is-ar .article-card:not(.planned-card):focus-visible::after {
+    transform: none !important;
+  }
+}
