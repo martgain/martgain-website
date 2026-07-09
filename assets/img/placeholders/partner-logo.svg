@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300" role="img" aria-labelledby="title desc">
+<title id="title">Partner Logo</title><desc id="desc">Source preferred 600×300</desc>
+<rect width="600" height="300" fill="#ffffff"/>
+<rect x="1" y="1" width="598" height="298" fill="#ffffff" stroke="#2e3f5b" stroke-width="2"/>
+<path d="M0 234 L600 126 L600 300 L0 300 Z" fill="#2e3f5b" opacity="0.12"/>
+<path d="M48 54 H552 M48 84 H456 M48 114 H504" stroke="#2e3f5b" stroke-width="5" opacity="0.35"/>
+<text x="300.0" y="150.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#000000">ASG IMAGE PLACEHOLDER</text>
+<text x="300.0" y="195.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#2e3f5b">Partner Logo</text>
+<text x="300.0" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#000000">Replace with approved real project image</text>
+</svg>

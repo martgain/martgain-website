@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Contact Map / Office Image — 16:9</title><desc id="desc">Preferred 1600×900 to 1920×1080; minimum 1200×675</desc>
+<rect width="1600" height="900" fill="#ffffff"/>
+<rect x="1" y="1" width="1598" height="898" fill="#ffffff" stroke="#2e3f5b" stroke-width="2"/>
+<path d="M0 702 L1600 378 L1600 900 L0 900 Z" fill="#2e3f5b" opacity="0.12"/>
+<path d="M128 162 H1472 M128 252 H1216 M128 342 H1344" stroke="#2e3f5b" stroke-width="5" opacity="0.35"/>
+<text x="800.0" y="450.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#000000">ASG IMAGE PLACEHOLDER</text>
+<text x="800.0" y="495.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#2e3f5b">Contact Map / Office Image — 16:9</text>
+<text x="800.0" y="860" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#000000">Replace with approved real project image</text>
+</svg>

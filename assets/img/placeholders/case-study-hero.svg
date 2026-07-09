@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350" role="img" aria-labelledby="title desc">
+<title id="title">Case Study Hero — 16:9</title><desc id="desc">Preferred 2400×1350 to 2560×1440; minimum 1920×1080</desc>
+<rect width="2400" height="1350" fill="#ffffff"/>
+<rect x="1" y="1" width="2398" height="1348" fill="#ffffff" stroke="#2e3f5b" stroke-width="2"/>
+<path d="M0 1053 L2400 567 L2400 1350 L0 1350 Z" fill="#2e3f5b" opacity="0.12"/>
+<path d="M192 243 H2208 M192 378 H1824 M192 513 H2016" stroke="#2e3f5b" stroke-width="5" opacity="0.35"/>
+<text x="1200.0" y="675.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="60" font-weight="700" fill="#000000">ASG IMAGE PLACEHOLDER</text>
+<text x="1200.0" y="720.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" fill="#2e3f5b">Case Study Hero — 16:9</text>
+<text x="1200.0" y="1310" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#000000">Replace with approved real project image</text>
+</svg>
