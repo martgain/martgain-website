@@ -110,3 +110,16 @@ Hover/contrast fixes:
 - CSS hex colors remain limited to the approved palette: `#000000`, `#2e3f5b`, `#ffffff`.
 
 See `SERVICE_ARABIC_LANGSWITCH_HOVER_QA.md` for the QA summary.
+
+## Latest visual refinement update
+- Reverted the last typography weight increase for paragraphs and header navigation.
+- Reduced the vertical white area around the homepage hero section.
+- Added animated statistics counters when the stats strip enters the viewport.
+- Aligned service-card internal rows so titles, descriptions, and links feel consistent without changing the card system.
+- Added spacing between the footer brand/title block and the footer paragraph.
+
+See `DESIGN_MOTION_REFINEMENT_QA.md` for the QA summary.
+
+## Clean merged version note
+
+This ZIP has been cleaned after iterative edits. Temporary QA files and patch logs were removed from the root folder. Future edits should be applied directly to the website files and summarized in `CHANGELOG.md` only.
