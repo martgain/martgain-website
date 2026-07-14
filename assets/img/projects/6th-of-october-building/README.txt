@@ -1,11 +1,9 @@
-Project: 6th of October Building
-Confirmed folder: 6th_of_October_Building
-Category: Residential Buildings
-Location: Egypt
-Scope: Architecture
+PROJECT: 6th of October Building
+SLUG: 6th-of-october-building
+PAGE: projects/6th-of-october-building/index.html
 
-Add real image files here:
-- cover.webp
-- gallery/gallery-01.webp
-- renders/render-01.webp
-- drawings-bim/bim-01.png
+Put one image with ANY filename inside each clearly named folder.
+The folder name defines where the image appears in the website.
+No fixed image filename is required.
+
+Open 00-IMAGE-PLACEMENT-GUIDE.md for the complete placement map.

@@ -1,0 +1,16 @@
+ضع صورة واحدة داخل هذا الفولدر بأي اسم تريده.
+لا يوجد اسم ملف إجباري.
+
+المكان داخل الموقع:
+تظهر في أول سيكشن في الصفحة الرئيسية على الشاشات الكبيرة.
+
+English:
+Place one image in this folder using any filename.
+No fixed filename is required.
+
+Website placement:
+Used in the first Home-page hero section on desktop.
+
+Recommended ratio: 16:9
+Required: Yes
+Supported common formats: JPG, JPEG, PNG, WEBP, AVIF, SVG.

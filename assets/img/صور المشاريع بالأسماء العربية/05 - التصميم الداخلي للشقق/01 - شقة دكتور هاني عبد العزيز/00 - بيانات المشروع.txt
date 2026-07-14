@@ -1,0 +1,11 @@
+﻿اسم المشروع بالعربي: شقة دكتور هاني عبد العزيز
+اسم المشروع الأصلي في ملف البيانات: Dr Hani Abdelaziz Apartment
+التصنيف بالعربي: التصميم الداخلي للشقق
+التصنيف الأصلي: Interior Apartments
+الموقع: Egypt
+نطاق العمل: Interior Design
+المسار التقني: dr-hani-abdelaziz-apartment
+صفحة المشروع: projects/dr-hani-abdelaziz-apartment/index.html
+
+ضع الصور داخل فولدرات الأماكن التالية بأي اسم ملف.
+اسم الصورة نفسها غير مهم؛ المهم اختيار فولدر المكان الصحيح.

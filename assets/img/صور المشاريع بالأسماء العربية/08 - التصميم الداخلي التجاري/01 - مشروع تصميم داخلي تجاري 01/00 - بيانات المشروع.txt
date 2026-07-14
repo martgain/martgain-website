@@ -1,0 +1,11 @@
+﻿اسم المشروع بالعربي: مشروع تصميم داخلي تجاري 01
+اسم المشروع الأصلي في ملف البيانات: Commercial Interior Project 01
+التصنيف بالعربي: التصميم الداخلي التجاري
+التصنيف الأصلي: Commercial Interiors
+الموقع: Egypt
+نطاق العمل: Interior Design
+المسار التقني: commercial-interior-project-01
+صفحة المشروع: projects/commercial-interior-project-01/index.html
+
+ضع الصور داخل فولدرات الأماكن التالية بأي اسم ملف.
+اسم الصورة نفسها غير مهم؛ المهم اختيار فولدر المكان الصحيح.

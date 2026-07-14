@@ -1,11 +1,9 @@
-Project: Al Mokaam Hotel
-Confirmed folder: Al_Mokaam_Hotel
-Category: Hospitality / Hotels
-Location: Makkah — KSA
-Scope: Architecture
+PROJECT: Al Mokaam Hotel
+SLUG: al-mokaam-hotel
+PAGE: projects/al-mokaam-hotel/index.html
 
-Add real image files here:
-- cover.webp
-- gallery/gallery-01.webp
-- renders/render-01.webp
-- drawings-bim/bim-01.png
+Put one image with ANY filename inside each clearly named folder.
+The folder name defines where the image appears in the website.
+No fixed image filename is required.
+
+Open 00-IMAGE-PLACEMENT-GUIDE.md for the complete placement map.

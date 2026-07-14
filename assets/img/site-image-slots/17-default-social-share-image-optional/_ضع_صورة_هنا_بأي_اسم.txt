@@ -1,0 +1,16 @@
+ضع صورة واحدة داخل هذا الفولدر بأي اسم تريده.
+لا يوجد اسم ملف إجباري.
+
+المكان داخل الموقع:
+تظهر كصورة معاينة عند مشاركة صفحات الموقع التي لا تحتوي صورة مشاركة خاصة.
+
+English:
+Place one image in this folder using any filename.
+No fixed filename is required.
+
+Website placement:
+Default link-preview image for pages without a dedicated social-share image.
+
+Recommended ratio: 1.91:1, ideally 1200x630
+Required: No - optional
+Supported common formats: JPG, JPEG, PNG, WEBP, AVIF, SVG.

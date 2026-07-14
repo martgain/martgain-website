@@ -1,0 +1,16 @@
+ضع صورة واحدة داخل هذا الفولدر بأي اسم تريده.
+لا يوجد اسم ملف إجباري.
+
+المكان داخل الموقع:
+تستخدم كصورة المعاينة عند مشاركة رابط صفحة المشروع على واتساب وفيسبوك ولينكدإن.
+
+English:
+Place one image in this folder using any filename.
+No fixed filename is required.
+
+Website placement:
+Used as the preview image when sharing the project URL on WhatsApp, Facebook, and LinkedIn.
+
+Recommended ratio: 1.91:1, ideally 1200x630
+Required: No - optional
+Supported common formats: JPG, JPEG, PNG, WEBP, AVIF, SVG.

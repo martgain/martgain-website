@@ -1,0 +1,16 @@
+ضع صورة واحدة داخل هذا الفولدر بأي اسم تريده.
+لا يوجد اسم ملف إجباري.
+
+المكان داخل الموقع:
+تظهر في كارت المشروع داخل الصفحة الرئيسية، صفحة الأعمال، وأقسام المشاريع المرتبطة.
+
+English:
+Place one image in this folder using any filename.
+No fixed filename is required.
+
+Website placement:
+Used in project cards on Home, Portfolio, and Related Projects sections.
+
+Recommended ratio: 4:3 or 16:9 landscape
+Required: Yes
+Supported common formats: JPG, JPEG, PNG, WEBP, AVIF, SVG.

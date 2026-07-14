@@ -1,11 +1,9 @@
-Project: Al Mhezf Hotel
-Confirmed folder: Al_Mhezf_Hotel
-Category: Hospitality / Hotels
-Location: Jeddah — KSA
-Scope: Architecture
+PROJECT: Al Mhezf Hotel
+SLUG: al-mhezf-hotel
+PAGE: projects/al-mhezf-hotel/index.html
 
-Add real image files here:
-- cover.webp
-- gallery/gallery-01.webp
-- renders/render-01.webp
-- drawings-bim/bim-01.png
+Put one image with ANY filename inside each clearly named folder.
+The folder name defines where the image appears in the website.
+No fixed image filename is required.
+
+Open 00-IMAGE-PLACEMENT-GUIDE.md for the complete placement map.

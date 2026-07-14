@@ -1,11 +1,9 @@
-Project: Al Khalil Building
-Confirmed folder: Al_Khalil_Building
-Category: Residential Buildings
-Location: Egypt
-Scope: Architecture
+PROJECT: Al Khalil Building
+SLUG: al-khalil-building
+PAGE: projects/al-khalil-building/index.html
 
-Add real image files here:
-- cover.webp
-- gallery/gallery-01.webp
-- renders/render-01.webp
-- drawings-bim/bim-01.png
+Put one image with ANY filename inside each clearly named folder.
+The folder name defines where the image appears in the website.
+No fixed image filename is required.
+
+Open 00-IMAGE-PLACEMENT-GUIDE.md for the complete placement map.

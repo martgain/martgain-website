@@ -1,0 +1,16 @@
+ضع صورة واحدة داخل هذا الفولدر بأي اسم تريده.
+لا يوجد اسم ملف إجباري.
+
+المكان داخل الموقع:
+الصورة الرئيسية داخل صفحة خدمة MEP بالعربي والإنجليزي.
+
+English:
+Place one image in this folder using any filename.
+No fixed filename is required.
+
+Website placement:
+Main hero image on the MEP Engineering page in AR and EN.
+
+Recommended ratio: 16:9
+Required: Yes
+Supported common formats: JPG, JPEG, PNG, WEBP, AVIF, SVG.

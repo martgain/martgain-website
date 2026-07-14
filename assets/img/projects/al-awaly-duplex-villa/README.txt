@@ -1,11 +1,9 @@
-Project: Al Awaly Duplex Villa
-Confirmed folder: Al_Awaly_Duplex_Villa
-Category: Exterior Villas
-Location: KSA
-Scope: Architecture
+PROJECT: Al Awaly Duplex Villa
+SLUG: al-awaly-duplex-villa
+PAGE: projects/al-awaly-duplex-villa/index.html
 
-Add real image files here:
-- cover.webp
-- gallery/gallery-01.webp
-- renders/render-01.webp
-- drawings-bim/bim-01.png
+Put one image with ANY filename inside each clearly named folder.
+The folder name defines where the image appears in the website.
+No fixed image filename is required.
+
+Open 00-IMAGE-PLACEMENT-GUIDE.md for the complete placement map.
