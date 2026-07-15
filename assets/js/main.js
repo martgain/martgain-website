@@ -1885,9 +1885,11 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
       if(Math.abs(deltaX) < 42) return;
       if(Math.abs(deltaX) < Math.abs(deltaY) * 1.15) return;
 
+      const forward = isRTL() ? deltaX > 0 : deltaX < 0;
+
       moveTo(
         state,
-        state.index + (deltaX < 0 ? 1 : -1),
+        state.index + (forward ? 1 : -1),
         false
       );
     }, { passive:true });

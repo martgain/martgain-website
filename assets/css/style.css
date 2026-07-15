@@ -4342,12 +4342,6 @@ body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
       border-color .16s ease!important;
   }
 
-  /* Touch feedback: intentionally subtle so the layout stays calm. */
-  .mobile-card-carousel-track > .mobile-card-carousel-item:active{
-    transform:translate3d(0,-1px,0) scale(1.006);
-    border-color:rgba(46,63,91,.30);
-    box-shadow:0 12px 26px rgba(46,63,91,.10);
-  }
 }
 
 @media (max-width:640px) and (hover:hover) and (pointer:fine){
@@ -4365,5 +4359,143 @@ body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
   .mobile-card-carousel-track > .mobile-card-carousel-item:active,
   .mobile-card-carousel-track > .mobile-card-carousel-item:hover{
     transform:none;
+  }
+}
+
+/* Mobile Arabic UX repairs — scoped to preserve desktop behavior */
+@media (max-width:980px){
+  body[dir="rtl"] .mobile-panel.is-open{
+    transform:translate3d(0,0,0);
+  }
+}
+
+@media (max-width:640px){
+  /* Keep the social icons comfortably above the following footer divider. */
+  .site-footer .footer-grid > div:first-child{
+    padding-bottom:20px;
+  }
+
+  /* Give the Arabic ticker the same seamless geometry and motion as English. */
+  body[dir="rtl"] .partners-marquee,
+  body[dir="rtl"] .partners-marquee-track,
+  body[dir="rtl"] .partners-marquee-group{
+    direction:ltr;
+  }
+  body[dir="rtl"] .partners-marquee-track{
+    animation-name:partners-loop-forward;
+  }
+  body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
+    animation-name:partners-loop-reverse;
+  }
+  body[dir="rtl"] .partners-logo-card{
+    direction:rtl;
+  }
+
+  /* Short dot rows stay centered; overflowing rows remain fully swipeable. */
+  .mobile-card-carousel-dots{
+    justify-content:safe center;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-x;
+  }
+  .mobile-card-carousel-dot{
+    scroll-snap-align:center;
+  }
+  .mobile-card-carousel-viewport{
+    touch-action:pan-y;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [role="button"]{
+    -webkit-tap-highlight-color:transparent;
+  }
+}
+
+@media (max-width:980px) and (hover:none) and (pointer:coarse){
+  .btn:hover{
+    background:var(--navy);
+    border-color:var(--navy);
+    color:var(--white);
+    transform:none;
+  }
+
+  .btn-outline:hover,
+  .lang-switch:hover{
+    background:var(--white);
+    border-color:var(--navy);
+    color:var(--navy);
+  }
+
+  .btn-invert:hover,
+  .site-footer .btn-invert:hover,
+  .cta-band .btn-invert:hover,
+  .dark-section .btn-invert:hover{
+    background:var(--white);
+    border-color:var(--white);
+    color:var(--black)!important;
+  }
+
+  .btn-ghost-dark:hover{
+    background:transparent;
+    border-color:rgba(255,255,255,.38);
+    color:var(--white);
+  }
+
+  .menu-toggle:hover:not([aria-expanded="true"]){
+    background:var(--white);
+    border-color:var(--line);
+    color:var(--black);
+    box-shadow:none;
+    transform:none;
+  }
+
+  .mobile-panel a:not(.btn):hover{
+    background:var(--white);
+    border-color:var(--line);
+    color:inherit;
+  }
+
+  .filter-btn:hover:not([aria-pressed="true"]){
+    background:var(--white);
+    border-color:var(--line);
+    color:var(--text);
+  }
+
+  .service-card:hover,
+  .project-card:hover,
+  .contact-card:hover,
+  .card-grid article:hover{
+    border-color:var(--line);
+  }
+
+  .dark-section .card-grid article:hover{
+    border-color:rgba(255,255,255,.18);
+  }
+
+  .site-footer a:hover,
+  .text-link:hover{
+    text-decoration:none;
+  }
+
+  .mobile-card-carousel-arrow:hover{
+    color:var(--navy);
+    opacity:1;
+    transform:translateY(-50%);
+  }
+
+  .mobile-card-carousel-dot:hover:not(.is-active){
+    background:rgba(46,63,91,.28);
+    transform:none;
+  }
+
+  .partners-logo-card:hover{
+    transform:none;
+    border-color:var(--navy);
+    box-shadow:none;
   }
 }
