@@ -1503,6 +1503,8 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
   const reduceMotionQuery = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
   );
+  const longDotsThreshold = 12;
+  const rtlDotsModelCache = new WeakMap();
 
   const candidateSelectors = [
     '.project-grid',
@@ -1523,7 +1525,8 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
     '.mobile-panel',
     '.dropdown-menu',
     '.overview-table',
-    '.filters-segmented-control'
+    '.filters-segmented-control',
+    '.about-partners-grid'
   ].join(',');
 
   const states = new Map();
@@ -1567,6 +1570,20 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
       ? '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg>'
       : '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"></path></svg>';
 
+    return button;
+  };
+
+  const makeDotsArrow = function(direction, label){
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className =
+      'mobile-card-carousel-dots-arrow ' +
+      'mobile-card-carousel-dots-arrow--' + direction;
+    button.setAttribute('aria-label', label);
+    button.innerHTML = direction === 'right'
+      ? '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg>'
+      : '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"></path></svg>';
+    button.hidden = true;
     return button;
   };
 
@@ -1645,7 +1662,134 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
       : 'Card ' + (state.index + 1) + ' of ' + state.visible.length;
   };
 
-  const updateControls = function(state){
+  const getDotsMaxScroll = function(dots){
+    return Math.max(0, dots.scrollWidth - dots.clientWidth);
+  };
+
+  const dotsAreRTL = function(dots){
+    return window.getComputedStyle(dots).direction === 'rtl';
+  };
+
+  const getDotsRTLModel = function(dots){
+    if(rtlDotsModelCache.has(dots)){
+      return rtlDotsModelCache.get(dots);
+    }
+
+    const initial = dots.scrollLeft;
+    dots.scrollLeft = 1;
+    const model = dots.scrollLeft === 0 ? 'negative' : 'positive';
+    dots.scrollLeft = initial;
+    rtlDotsModelCache.set(dots, model);
+    return model;
+  };
+
+  const getDotsVisualPosition = function(dots){
+    const max = getDotsMaxScroll(dots);
+    if(!dotsAreRTL(dots)) return dots.scrollLeft;
+
+    const model = getDotsRTLModel(dots);
+    return model === 'negative'
+      ? Math.abs(dots.scrollLeft)
+      : Math.max(0, max - dots.scrollLeft);
+  };
+
+  const scrollDotsToVisualPosition = function(dots, position, immediate){
+    const max = getDotsMaxScroll(dots);
+    const clamped = Math.max(0, Math.min(max, position));
+    const behavior = immediate || reduceMotionQuery.matches
+      ? 'auto'
+      : 'smooth';
+
+    if(!dotsAreRTL(dots)){
+      dots.scrollTo({ left:clamped, behavior:behavior });
+      return;
+    }
+
+    const model = getDotsRTLModel(dots);
+    const left = model === 'negative' ? -clamped : max - clamped;
+    dots.scrollTo({ left:left, behavior:behavior });
+  };
+
+  const updateDotsArrowState = function(state){
+    if(!state.dotsShell.classList.contains('is-long')) return;
+
+    const max = getDotsMaxScroll(state.dots);
+    const position = getDotsVisualPosition(state.dots);
+    const atStart = position <= 2;
+    const atEnd = position >= max - 2;
+
+    if(dotsAreRTL(state.dots)){
+      state.dotsLeft.disabled = atEnd;
+      state.dotsRight.disabled = atStart;
+    }else{
+      state.dotsLeft.disabled = atStart;
+      state.dotsRight.disabled = atEnd;
+    }
+
+    state.dotsLeft.setAttribute(
+      'aria-disabled',
+      String(state.dotsLeft.disabled)
+    );
+    state.dotsRight.setAttribute(
+      'aria-disabled',
+      String(state.dotsRight.disabled)
+    );
+  };
+
+  const keepActiveDotVisible = function(state, immediate){
+    const activeDot = state.dots.children[state.index];
+    if(!activeDot) return;
+
+    const railRect = state.dots.getBoundingClientRect();
+    const dotRect = activeDot.getBoundingClientRect();
+    const edgePadding = 8;
+    const fullyVisible =
+      dotRect.left >= railRect.left + edgePadding &&
+      dotRect.right <= railRect.right - edgePadding;
+
+    if(fullyVisible) return;
+
+    const max = getDotsMaxScroll(state.dots);
+    const last = Math.max(1, state.visible.length - 1);
+    const target = max * (state.index / last);
+    scrollDotsToVisualPosition(state.dots, target, immediate);
+  };
+
+  const updateDotsNavigation = function(state, immediate){
+    const isCandidate = state.visible.length > longDotsThreshold;
+
+    state.dotsShell.classList.toggle('is-long', isCandidate);
+    state.dotsLeft.hidden = !isCandidate;
+    state.dotsRight.hidden = !isCandidate;
+
+    const hasOverflow = isCandidate && getDotsMaxScroll(state.dots) > 2;
+    if(!hasOverflow){
+      state.dotsShell.classList.remove('is-long');
+      state.dotsLeft.hidden = true;
+      state.dotsRight.hidden = true;
+      scrollDotsToVisualPosition(state.dots, 0, true);
+      return;
+    }
+
+    keepActiveDotVisible(state, immediate);
+    updateDotsArrowState(state);
+  };
+
+  const moveDotsRail = function(state, physicalDirection){
+    const max = getDotsMaxScroll(state.dots);
+    if(max <= 0) return;
+
+    const step = Math.max(88, Math.round(state.dots.clientWidth * .72));
+    const position = getDotsVisualPosition(state.dots);
+    const rtl = dotsAreRTL(state.dots);
+    const delta = rtl
+      ? (physicalDirection === 'left' ? step : -step)
+      : (physicalDirection === 'left' ? -step : step);
+
+    scrollDotsToVisualPosition(state.dots, position + delta, false);
+  };
+
+  const updateControls = function(state, immediate){
     const last = Math.max(0, state.visible.length - 1);
     const atStart = state.index <= 0;
     const atEnd = state.index >= last;
@@ -1667,10 +1811,12 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
     });
 
     updateStatus(state);
+    updateDotsNavigation(state, immediate);
   };
 
   const renderDots = function(state){
     state.dots.textContent = '';
+    state.dots.scrollLeft = 0;
 
     state.visible.forEach(function(item, dotIndex){
       const dot = document.createElement('button');
@@ -1699,22 +1845,23 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
 
     const first = state.visible[0];
     const active = state.visible[state.index];
-    const offset = Math.max(0, active.offsetLeft - first.offsetLeft);
+    const signedOffset = active.offsetLeft - first.offsetLeft;
+    const translation = -signedOffset;
     const skipMotion = immediate || reduceMotionQuery.matches;
 
     if(skipMotion){
       const previousTransition = state.track.style.transition;
       state.track.style.transition = 'none';
       state.track.style.transform =
-        'translate3d(' + (-offset) + 'px,0,0)';
+        'translate3d(' + translation + 'px,0,0)';
       state.track.offsetHeight;
       state.track.style.transition = previousTransition;
     }else{
       state.track.style.transform =
-        'translate3d(' + (-offset) + 'px,0,0)';
+        'translate3d(' + translation + 'px,0,0)';
     }
 
-    updateControls(state);
+    updateControls(state, skipMotion);
     if(!state.fixedHeight){
       window.requestAnimationFrame(function(){
         updateHeight(state);
@@ -1772,6 +1919,7 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
     const shell = document.createElement('div');
     const stage = document.createElement('div');
     const viewport = document.createElement('div');
+    const dotsShell = document.createElement('div');
     const dots = document.createElement('div');
     const status = document.createElement('div');
 
@@ -1785,6 +1933,7 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
       'aria-roledescription',
       isRTL() ? 'عارض بطاقات' : 'card carousel'
     );
+    dotsShell.className = 'mobile-card-carousel-dots-shell';
     dots.className = 'mobile-card-carousel-dots';
     dots.setAttribute('role', 'group');
     dots.setAttribute(
@@ -1803,6 +1952,18 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
       'next',
       isRTL() ? 'البطاقة التالية' : 'Next card'
     );
+    const dotsLeft = makeDotsArrow(
+      'left',
+      isRTL()
+        ? 'تمرير نقاط التنقل لليسار'
+        : 'Scroll carousel dots left'
+    );
+    const dotsRight = makeDotsArrow(
+      'right',
+      isRTL()
+        ? 'تمرير نقاط التنقل لليمين'
+        : 'Scroll carousel dots right'
+    );
 
     parent.insertBefore(placeholder, track);
     parent.insertBefore(shell, track);
@@ -1811,7 +1972,10 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
     stage.appendChild(viewport);
     stage.appendChild(next);
     shell.appendChild(stage);
-    shell.appendChild(dots);
+    dotsShell.appendChild(dotsLeft);
+    dotsShell.appendChild(dots);
+    dotsShell.appendChild(dotsRight);
+    shell.appendChild(dotsShell);
     shell.appendChild(status);
 
     track.classList.add('mobile-card-carousel-track');
@@ -1823,7 +1987,10 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
       viewport:viewport,
       prev:prev,
       next:next,
+      dotsShell:dotsShell,
       dots:dots,
+      dotsLeft:dotsLeft,
+      dotsRight:dotsRight,
       status:status,
       placeholder:placeholder,
       parent:parent,
@@ -1850,6 +2017,20 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
     next.addEventListener('click', function(){
       moveTo(state, state.index + 1, false);
     });
+
+    dotsLeft.addEventListener('click', function(){
+      moveDotsRail(state, 'left');
+    });
+
+    dotsRight.addEventListener('click', function(){
+      moveDotsRail(state, 'right');
+    });
+
+    dots.addEventListener('scroll', function(){
+      window.requestAnimationFrame(function(){
+        updateDotsArrowState(state);
+      });
+    }, { passive:true });
 
     viewport.addEventListener('keydown', function(event){
       if(event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
@@ -1934,6 +2115,7 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
         if(width && width !== state.lastViewportWidth){
           state.fixedHeight = 0;
           updateHeight(state);
+          updateDotsNavigation(state, true);
         }
       });
       state.resizeObserver.observe(viewport);
