@@ -1,5 +1,16 @@
 # ASG Website Changelog
 
+## 2026-07-15 — verified project and partner source integration
+- Replaced the retired 71-project placeholder package with 39 workbook projects that have matching supplied image folders.
+- Added 276 original WebP project images using ASCII SEO slugs; the second image is the cover for each project.
+- Added one bilingual JavaScript data source and one dynamic project HTML shell for both English and Arabic.
+- Rewired all homepage, portfolio, and service project feeds before the existing interaction script initializes.
+- Added 34 supplied transparent partner logos across two equal, continuously moving rows; the existing opposite-direction marquee motion remains intact.
+- Removed obsolete per-project HTML folders, placeholder project asset folders, the stale Arabic 71-project directory map, and its retired upload guide.
+- Rebuilt the sitemap with 39 English and 39 Arabic project query URLs.
+- Hid unsupported location, scope, year, and descriptive claims instead of inventing missing project facts.
+- Updated image width and height attributes to the supplied 1230×801 intrinsic dimensions.
+
 ## Current merged version
 This package contains the latest applied website edits in one clean folder structure.
 

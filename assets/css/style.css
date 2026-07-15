@@ -877,20 +877,18 @@ body[dir="rtl"] .side-compact-form{
 /* Footer scroll reveal and link motion */
 .site-footer.footer-motion-enabled{
   --footer-lift:36px;
-  --footer-content-opacity:.74;
   overflow:hidden;
 }
 .site-footer.footer-motion-enabled .footer-grid,
 .site-footer.footer-motion-enabled .footer-bottom{
   transform:translateY(var(--footer-lift));
-  opacity:var(--footer-content-opacity);
-  will-change:transform,opacity;
+  will-change:transform;
 }
 .site-footer.footer-motion-enabled .footer-grid{
-  transition:transform .08s linear,opacity .08s linear;
+  transition:transform .08s linear;
 }
 .site-footer.footer-motion-enabled .footer-bottom{
-  transition:transform .08s linear .03s,opacity .08s linear .03s;
+  transition:transform .08s linear .03s;
 }
 
 /* Footer text-link entrance */
@@ -902,10 +900,8 @@ body[dir="rtl"] .side-compact-form{
   display:inline-flex;
   width:max-content;
   max-width:100%;
-  opacity:0;
   transform:translateX(15px);
   transition:
-    opacity .24s ease var(--footer-link-delay),
     transform .24s ease var(--footer-link-delay),
     color .22s ease;
 }
@@ -917,7 +913,6 @@ body[dir="rtl"] .site-footer.footer-motion-enabled .footer-bottom a{
 .site-footer.footer-motion-enabled.is-footer-visible .footer-grid ul a,
 .site-footer.footer-motion-enabled.is-footer-visible .footer-grid p a:not(.btn),
 .site-footer.footer-motion-enabled.is-footer-visible .footer-bottom a{
-  opacity:1;
   transform:translateX(0);
 }
 
@@ -984,7 +979,6 @@ body[dir="rtl"] .site-footer .footer-bottom a::after{
   }
   .site-footer.footer-motion-enabled{
     --footer-lift:0px;
-    --footer-content-opacity:1;
   }
 }
 
@@ -1607,38 +1601,8 @@ textarea{
   .site-footer .footer-bottom p,
   .site-footer .footer-bottom a{
     transition:
-      opacity .22s ease,
       color .22s ease,
       transform .24s ease var(--footer-link-delay,0s);
-  }
-
-  /* As soon as the pointer enters the footer, everything softens slightly */
-  .site-footer:hover .brand-footer,
-  .site-footer:hover .footer-grid h2,
-  .site-footer:hover .footer-grid p:not(:has(a)),
-  .site-footer:hover .footer-grid ul a,
-  .site-footer:hover .footer-grid p > a:not(.btn),
-  .site-footer:hover .footer-grid > div > .btn,
-  .site-footer:hover .footer-bottom p,
-  .site-footer:hover .footer-bottom a{
-    opacity:.46;
-  }
-
-  /* Only the exact item under the pointer stays fully illuminated */
-  .site-footer:hover .brand-footer:hover,
-  .site-footer:hover .brand-footer:focus-visible,
-  .site-footer:hover .footer-grid h2:hover,
-  .site-footer:hover .footer-grid p:not(:has(a)):hover,
-  .site-footer:hover .footer-grid ul a:hover,
-  .site-footer:hover .footer-grid ul a:focus-visible,
-  .site-footer:hover .footer-grid p > a:not(.btn):hover,
-  .site-footer:hover .footer-grid p > a:not(.btn):focus-visible,
-  .site-footer:hover .footer-grid > div > .btn:hover,
-  .site-footer:hover .footer-grid > div > .btn:focus-visible,
-  .site-footer:hover .footer-bottom p:hover,
-  .site-footer:hover .footer-bottom a:hover,
-  .site-footer:hover .footer-bottom a:focus-visible{
-    opacity:1;
   }
 }
 
@@ -1650,27 +1614,6 @@ textarea{
   .site-footer .footer-bottom p,
   .site-footer .footer-bottom a{
     transition:none;
-  }
-}
-
-/* Footer spotlight link-state correction */
-@media (hover:hover) and (pointer:fine){
-  .site-footer.footer-motion-enabled:hover .footer-grid ul a,
-  .site-footer.footer-motion-enabled:hover .footer-grid p > a:not(.btn),
-  .site-footer.footer-motion-enabled:hover .footer-bottom a,
-  .site-footer.footer-motion-enabled:hover .footer-grid ul a:visited,
-  .site-footer.footer-motion-enabled:hover .footer-grid p > a:not(.btn):visited,
-  .site-footer.footer-motion-enabled:hover .footer-bottom a:visited{
-    color:rgba(255,255,255,.46);
-  }
-
-  .site-footer.footer-motion-enabled:hover .footer-grid ul a:hover,
-  .site-footer.footer-motion-enabled:hover .footer-grid ul a:focus-visible,
-  .site-footer.footer-motion-enabled:hover .footer-grid p > a:not(.btn):hover,
-  .site-footer.footer-motion-enabled:hover .footer-grid p > a:not(.btn):focus-visible,
-  .site-footer.footer-motion-enabled:hover .footer-bottom a:hover,
-  .site-footer.footer-motion-enabled:hover .footer-bottom a:focus-visible{
-    color:var(--white);
   }
 }
 
@@ -2036,11 +1979,6 @@ body{
 .footer-social-link:focus-visible{
   outline:2px solid var(--white);
   outline-offset:3px;
-}
-@media (hover:hover) and (pointer:fine){
-  .site-footer:hover .footer-social-link{opacity:.46}
-  .site-footer:hover .footer-social-link:hover,
-  .site-footer:hover .footer-social-link:focus-visible{opacity:1}
 }
 @media (max-width:640px){
   .footer-socials{gap:8px;margin-top:18px}
@@ -3225,42 +3163,6 @@ body[dir="rtl"] .page-scroll-top{
   }
 }
 
-/* Footer reveal when entering viewport */
-.site-footer{
-  --footer-reveal-opacity:.48;
-  --footer-reveal-brightness:.68;
-}
-
-.site-footer .footer-grid > div > :not(.brand-footer),
-.site-footer .footer-bottom{
-  opacity:var(--footer-reveal-opacity);
-  filter:brightness(var(--footer-reveal-brightness));
-  transition:
-    opacity .92s cubic-bezier(.22,1,.36,1),
-    filter .92s cubic-bezier(.22,1,.36,1);
-}
-
-.site-footer.is-in-view .footer-grid > div > :not(.brand-footer),
-.site-footer.is-in-view .footer-bottom{
-  opacity:1;
-  filter:brightness(1);
-  transition-delay:0s;
-}
-
-.site-footer:not(.is-in-view) .footer-grid > div > :not(.brand-footer),
-.site-footer:not(.is-in-view) .footer-bottom{
-  transition-delay:0s;
-}
-
-@media (prefers-reduced-motion:reduce){
-  .site-footer .footer-grid > div > :not(.brand-footer),
-  .site-footer .footer-bottom,
-  .site-footer.is-in-view .footer-grid > div > :not(.brand-footer),
-  .site-footer.is-in-view .footer-bottom{
-    transition:none;
-  }
-}
-
 /* Automatic partners logo marquee */
 .partners-marquee-section{
   overflow:hidden;
@@ -3336,12 +3238,22 @@ body[dir="rtl"] .page-scroll-top{
   animation-name:partners-loop-reverse;
 }
 
+body[dir="rtl"] .partners-marquee,
+body[dir="rtl"] .partners-marquee-track,
+body[dir="rtl"] .partners-marquee-group{
+  direction:ltr;
+}
+
 body[dir="rtl"] .partners-marquee-track{
-  animation-name:partners-loop-reverse;
+  animation-name:partners-loop-forward;
 }
 
 body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
-  animation-name:partners-loop-forward;
+  animation-name:partners-loop-reverse;
+}
+
+body[dir="rtl"] .partners-logo-card{
+  direction:rtl;
 }
 
 
@@ -4210,71 +4122,6 @@ body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
   }
 }
 
-/* Mobile footer opacity adapted for accordion layout */
-@media (max-width:640px){
-  /* Do not dim the whole footer container: it makes accordion headings unreadable. */
-  .site-footer > *{
-    opacity:1!important;
-    filter:none!important;
-  }
-
-  /* Main accordion headings and the static Contact heading stay fully visible. */
-  .site-footer .footer-grid > div > h2,
-  .site-footer .footer-accordion-trigger,
-  .site-footer .footer-static-contact > h2,
-  .site-footer .footer-static-contact > h2 .footer-heading-link{
-    opacity:1!important;
-    filter:none!important;
-    color:#ffffff!important;
-  }
-
-  /* Before the reveal point, secondary footer content is only softened lightly. */
-  .site-footer:not(.is-in-view) .footer-grid > div:first-child > :not(.brand-footer),
-  .site-footer:not(.is-in-view) .footer-accordion-panel-inner,
-  .site-footer:not(.is-in-view) .footer-static-contact > p,
-  .site-footer:not(.is-in-view) .footer-static-contact > .btn,
-  .site-footer:not(.is-in-view) .footer-bottom{
-    opacity:.76;
-    filter:brightness(.88);
-  }
-
-  .site-footer .footer-grid > div:first-child > :not(.brand-footer),
-  .site-footer .footer-accordion-panel-inner,
-  .site-footer .footer-static-contact > p,
-  .site-footer .footer-static-contact > .btn,
-  .site-footer .footer-bottom{
-    transition:
-      opacity .76s cubic-bezier(.22,1,.36,1),
-      filter .76s cubic-bezier(.22,1,.36,1);
-  }
-
-  .site-footer.is-in-view .footer-grid > div:first-child > :not(.brand-footer),
-  .site-footer.is-in-view .footer-accordion-panel-inner,
-  .site-footer.is-in-view .footer-static-contact > p,
-  .site-footer.is-in-view .footer-static-contact > .btn,
-  .site-footer.is-in-view .footer-bottom{
-    opacity:1;
-    filter:brightness(1);
-  }
-
-  /* Accordion arrows must remain clear before and after reveal. */
-  .site-footer .footer-accordion-chevron{
-    opacity:1!important;
-    filter:none!important;
-  }
-}
-
-@media (prefers-reduced-motion:reduce){
-  .site-footer .footer-grid > div:first-child > :not(.brand-footer),
-  .site-footer .footer-accordion-panel-inner,
-  .site-footer .footer-static-contact > p,
-  .site-footer .footer-static-contact > .btn,
-  .site-footer .footer-bottom{
-    transition:none!important;
-  }
-}
-
-
 /* Mobile header mini controls: language + WhatsApp */
 .lang-switch .lang-short{display:none;}
 .lang-switch .lang-full{display:inline;}
@@ -4380,22 +4227,6 @@ body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
   /* Keep the social icons comfortably above the following footer divider. */
   .site-footer .footer-grid > div:first-child{
     padding-bottom:20px;
-  }
-
-  /* Give the Arabic ticker the same seamless geometry and motion as English. */
-  body[dir="rtl"] .partners-marquee,
-  body[dir="rtl"] .partners-marquee-track,
-  body[dir="rtl"] .partners-marquee-group{
-    direction:ltr;
-  }
-  body[dir="rtl"] .partners-marquee-track{
-    animation-name:partners-loop-forward;
-  }
-  body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
-    animation-name:partners-loop-reverse;
-  }
-  body[dir="rtl"] .partners-logo-card{
-    direction:rtl;
   }
 
   /* Short dot rows stay centered; overflowing rows remain fully swipeable. */
@@ -4507,9 +4338,24 @@ body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
   }
 }
 
+/* Real partner artwork: fit approved transparent logos without altering marquee motion. */
+.partners-logo-image{
+  width:120px;
+  height:80px;
+  object-fit:contain;
+  object-position:center;
+}
+
 /* Mobile carousel follow-up: scoped additions only. */
 .about-partners-mobile-marquees{
-  display:none;
+  display:grid;
+  min-width:0;
+  width:100%;
+  overflow:hidden;
+}
+
+.about-partners-grid{
+  display:none!important;
 }
 
 @media (max-width:980px){
@@ -4655,14 +4501,14 @@ body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
   flex:0 0 82px;
   overflow:hidden;
   border-radius:9px;
-  background:#fff url("../img/brand/asg-logo.png") center/contain no-repeat;
+  background:transparent url("../img/brand/asg-logo.png") center/contain no-repeat;
   color:transparent!important;
   font-size:0!important;
   line-height:0;
 }
 
 .brand-footer .brand-mark{
-  background:#fff url("../img/brand/asg-logo.png") center/contain no-repeat;
+  background:transparent url("../img/brand/asg-logo.png") center/contain no-repeat;
   color:transparent!important;
 }
 
@@ -4678,6 +4524,11 @@ body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
   transition:none!important;
 }
 
+/* The source PNG is transparent: render its dark mark in white on the black footer. */
+.site-footer .brand-footer .brand-mark{
+  filter:brightness(0) invert(1)!important;
+}
+
 @media (max-width:980px){
   .brand-mark{
     width:74px;
@@ -4691,5 +4542,21 @@ body[dir="rtl"] .partners-marquee--reverse .partners-marquee-track{
     width:66px;
     height:32px;
     flex-basis:66px;
+  }
+}
+
+/* Card links stay clean at rest; underline is a deliberate desktop hover/focus cue only. */
+.service-card .text-link,
+.project-card .text-link{
+  text-decoration:none!important;
+}
+
+@media (hover:hover) and (pointer:fine){
+  .service-card .text-link:hover,
+  .service-card .text-link:focus-visible,
+  .project-card .text-link:hover,
+  .project-card .text-link:focus-visible{
+    text-decoration:underline!important;
+    text-underline-offset:4px;
   }
 }

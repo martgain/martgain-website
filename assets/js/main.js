@@ -587,7 +587,6 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
 
     if (reduceMotion.matches) {
       footer.style.setProperty('--footer-lift', '0px');
-      footer.style.setProperty('--footer-content-opacity', '1');
       footer.classList.add('is-footer-visible');
       return;
     }
@@ -599,10 +598,8 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
     const travel = Math.max(260, viewportHeight * 0.55);
     const progress = clamp((viewportHeight - rect.top) / travel, 0, 1);
     const lift = (1 - progress) * 36;
-    const opacity = 0.74 + (progress * 0.26);
 
     footer.style.setProperty('--footer-lift', `${lift.toFixed(2)}px`);
-    footer.style.setProperty('--footer-content-opacity', opacity.toFixed(3));
     footer.classList.toggle('is-footer-visible', progress > 0.08);
   };
 
@@ -1350,65 +1347,6 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
   });
 
   setFlyout(false, true);
-})();
-
-// Footer reveal when entering viewport
-(function(){
-  const footers = Array.from(
-    document.querySelectorAll('.site-footer')
-  );
-
-  if(!footers.length) return;
-
-  let ticking = false;
-
-  const updateFooterState = function(){
-    ticking = false;
-
-    const viewportHeight = window.innerHeight ||
-      document.documentElement.clientHeight;
-
-    /*
-     * Mobile footer is now accordion-based and substantially shorter.
-     * Reveal earlier on phones so the menu headings are never left dim.
-     * Desktop keeps the existing reveal point unchanged.
-     */
-    const revealLineRatio = window.innerWidth <= 640 ? .72 : .14;
-    const revealLine = viewportHeight * revealLineRatio;
-
-    footers.forEach(function(footer){
-      const rect = footer.getBoundingClientRect();
-
-      /*
-       * Keep the footer dimmed until its top reaches approximately
-       * the same stage shown in the supplied mobile reference:
-       * 14% down from the top of the viewport.
-       */
-      const shouldReveal =
-        rect.top <= revealLine &&
-        rect.bottom > 0;
-
-      footer.classList.toggle(
-        'is-in-view',
-        shouldReveal
-      );
-    });
-  };
-
-  const requestUpdate = function(){
-    if(ticking) return;
-
-    ticking = true;
-    window.requestAnimationFrame(updateFooterState);
-  };
-
-  window.addEventListener('scroll', requestUpdate, { passive:true });
-  window.addEventListener('resize', requestUpdate);
-  window.addEventListener('orientationchange', requestUpdate);
-  window.addEventListener('pageshow', requestUpdate);
-  window.addEventListener('load', requestUpdate);
-
-  updateFooterState();
 })();
 
 // Automatic partners logo marquee
