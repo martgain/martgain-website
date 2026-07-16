@@ -2339,3 +2339,90 @@ document.querySelectorAll('[data-lang-switch], .lang-switch').forEach(function(l
     refresh();
   });
 })();
+
+
+// Reviews carousel
+(function(){
+  const carousels = Array.from(document.querySelectorAll('[data-reviews-carousel]'));
+  if(!carousels.length) return;
+
+  carousels.forEach(function(carousel){
+    const track = carousel.querySelector('[data-reviews-track]');
+    const slides = track ? Array.from(track.children) : [];
+    const prev = carousel.querySelector('[data-reviews-prev]');
+    const next = carousel.querySelector('[data-reviews-next]');
+    const dotsWrap = carousel.querySelector('[data-reviews-dots]');
+
+    if(!track || !slides.length || !prev || !next || !dotsWrap) return;
+
+    let index = 0;
+    let startX = 0;
+    let currentX = 0;
+    let dragging = false;
+
+    const dots = slides.map(function(_, dotIndex){
+      const dot = document.createElement('button');
+      dot.className = 'reviews-carousel-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Go to review ' + (dotIndex + 1));
+      dot.addEventListener('click', function(){
+        goTo(dotIndex);
+      });
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
+
+    function goTo(nextIndex){
+      index = (nextIndex + slides.length) % slides.length;
+      track.style.transform = 'translate3d(' + (-index * 100) + '%,0,0)';
+      dots.forEach(function(dot, dotIndex){
+        dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+      });
+    }
+
+    prev.addEventListener('click', function(){
+      goTo(index - 1);
+    });
+
+    next.addEventListener('click', function(){
+      goTo(index + 1);
+    });
+
+    carousel.addEventListener('keydown', function(event){
+      if(event.key === 'ArrowLeft'){
+        event.preventDefault();
+        goTo(index - 1);
+      }else if(event.key === 'ArrowRight'){
+        event.preventDefault();
+        goTo(index + 1);
+      }
+    });
+
+    track.addEventListener('pointerdown', function(event){
+      dragging = true;
+      startX = event.clientX;
+      currentX = startX;
+      track.setPointerCapture?.(event.pointerId);
+    });
+
+    track.addEventListener('pointermove', function(event){
+      if(!dragging) return;
+      currentX = event.clientX;
+    });
+
+    const finishDrag = function(){
+      if(!dragging) return;
+      dragging = false;
+      const delta = currentX - startX;
+      if(Math.abs(delta) > 42){
+        goTo(index + (delta < 0 ? 1 : -1));
+      }
+    };
+
+    track.addEventListener('pointerup', finishDrag);
+    track.addEventListener('pointercancel', finishDrag);
+    track.addEventListener('lostpointercapture', finishDrag);
+
+    goTo(0);
+  });
+})();
