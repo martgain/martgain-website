@@ -17,9 +17,6 @@
       imageAltSuffix: 'cover image',
       projectOverview: 'Project overview',
       category: 'Portfolio category',
-      images: 'Available images',
-      sourceStatus: 'Source status',
-      verified: 'Verified folder and imagery',
       evidenceEyebrow: 'Confirmed project data',
       evidenceTitle: 'Published from the reviewed ASG delivery',
       evidenceBody: 'The project name, portfolio category, and imagery come from the supplied organized project folder. Location, year, and service scope are intentionally omitted until confirmed.',
@@ -42,8 +39,6 @@
       imageAltSuffix: 'صورة الغلاف',
       projectOverview: 'نظرة عامة على المشروع',
       category: 'تصنيف البورتفوليو',
-      images: 'الصور المتاحة',
-      sourceStatus: 'حالة المصدر',
       verified: 'مجلد وصور موثقة',
       evidenceEyebrow: 'بيانات مشروع مؤكدة',
       evidenceTitle: 'منشور من تسليم ASG المنظّم والمراجَع',
@@ -317,8 +312,7 @@
     setProjectLanguageLinks(project, lang);
     main.innerHTML = `
       <section class="case-hero"><figure class="case-visual"><img alt="${escapeHtml(cover.alt[lang])}" fetchpriority="high" height="${cover.height}" src="${escapeHtml(absoluteUrl(cover.src))}" width="${cover.width}"></figure><div class="case-hero-copy"><span class="eyebrow">${escapeHtml(category)}</span><h1>${escapeHtml(title)}</h1><p>${escapeHtml(category)}</p></div></section>
-      <section class="section"><div class="container narrow"><h2>${escapeHtml(copy[lang].projectOverview)}</h2><div class="overview-table"><div>${escapeHtml(copy[lang].category)}</div><div>${escapeHtml(category)}</div><div>${escapeHtml(copy[lang].images)}</div><div>${project.images.length}</div><div>${escapeHtml(copy[lang].sourceStatus)}</div><div>${escapeHtml(copy[lang].verified)}</div></div></div></section>
-      <section class="section section-soft"><div class="container section-head"><span class="eyebrow">${escapeHtml(copy[lang].evidenceEyebrow)}</span><h2>${escapeHtml(copy[lang].evidenceTitle)}</h2><p>${escapeHtml(copy[lang].evidenceBody)}</p></div></section>
+      <section class="section"><div class="container narrow"><h2>${escapeHtml(copy[lang].projectOverview)}</h2><div class="overview-table"><div>${escapeHtml(copy[lang].category)}</div><div>${escapeHtml(category)}</div></div></div></section>
       <section class="section"><div class="container section-head"><span class="eyebrow">${escapeHtml(copy[lang].gallery)}</span><h2>${escapeHtml(title)}</h2><p>${escapeHtml(copy[lang].galleryIntro)}</p></div><div class="container gallery-grid">${galleryMarkup(project, lang)}</div></section>
       <section class="section section-soft"><div class="container section-head"><h2>${escapeHtml(copy[lang].related)}</h2></div><div class="container"><div class="project-grid" data-project-grid>${related.map(candidate => cardMarkup(candidate, lang)).join('')}</div></div></section>
       <section class="section cta-band"><div class="container split"><div><span class="eyebrow">${escapeHtml(copy[lang].startEyebrow)}</span><h2>${escapeHtml(copy[lang].startTitle)}</h2><p>${escapeHtml(copy[lang].startBody)}</p></div><div class="cta-actions"><a class="btn btn-invert" href="${escapeHtml(contactUrl)}">${escapeHtml(copy[lang].start)}</a><a class="btn btn-ghost-dark" href="${escapeHtml(whatsappUrl)}" rel="noopener" target="_blank">${escapeHtml(copy[lang].whatsapp)}</a></div></div></section>`;
