@@ -4677,3 +4677,41 @@ body[dir="rtl"] .hero-video-section::after{
     display:none;
   }
 }
+
+/* Partner logo card visual refinement: remove card borders and enlarge approved logos only. */
+.partners-logo-card{
+  border-color:transparent!important;
+  border-style:solid!important;
+  box-shadow:none;
+}
+
+.partners-logo-card:hover,
+.partners-logo-card:focus-within{
+  border-color:transparent!important;
+}
+
+.partners-logo-card img,
+.partners-logo-image{
+  width:160px;
+  max-width:88%;
+  height:96px;
+  max-height:88%;
+  object-fit:contain;
+  object-position:center;
+}
+
+@media (max-width:980px){
+  .partners-logo-card img,
+  .partners-logo-image{
+    width:148px;
+    height:88px;
+  }
+}
+
+@media (max-width:640px){
+  .partners-logo-card img,
+  .partners-logo-image{
+    width:136px;
+    height:78px;
+  }
+}
