@@ -359,7 +359,7 @@
   }));
   if(loadBtn){loadBtn.addEventListener('click',()=>{visibleLimit+=12;applyFilters();});}
 
-  const whatsappNumber = '201000336679';
+  const whatsappNumber = '201040335522';
   const ignoredValues = new Set([
     'Select type',
     'Select service',

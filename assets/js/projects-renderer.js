@@ -306,7 +306,7 @@
     const related = content.projects.filter(candidate => candidate.categoryKey === project.categoryKey && candidate.slug !== project.slug).slice(0, 3);
     const contactUrl = new URL(lang === 'ar' ? 'ar/contact/index.html' : 'contact/index.html', siteRoot).href;
     const whatsappText = lang === 'ar' ? 'مرحبًا ASG، أود مناقشة مشروع.' : 'Hi ASG, I would like to discuss a project.';
-    const whatsappUrl = `https://wa.me/201000336679?text=${encodeURIComponent(whatsappText)}`;
+    const whatsappUrl = `https://wa.me/201040335522?text=${encodeURIComponent(whatsappText)}`;
 
     updateMeta(project, lang);
     setProjectLanguageLinks(project, lang);

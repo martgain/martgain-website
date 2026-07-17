@@ -1,5 +1,12 @@
 # ASG Website Changelog
 
+## 2026-07-16 — partner logo sizing and primary phone update
+- Set approved partner artwork to the requested `181px × 181px` box with `max-width: 88%`, `max-height: 120%`, and `object-fit: contain` across English/Arabic and desktop/mobile pages.
+- Reduced the partner marquee layout gap to `3px` at tablet widths and `0` at mobile widths without changing either marquee animation.
+- Replaced the previous phone and WhatsApp number everywhere with `+20 10 40335522`.
+- Updated all WhatsApp destinations and form redirects to the international WhatsApp value `201040335522`.
+- Wrapped every visible phone number in `<bdi dir="ltr">` so it remains correctly ordered on Arabic RTL pages.
+
 ## 2026-07-15 — verified project and partner source integration
 - Replaced the retired 71-project placeholder package with 39 workbook projects that have matching supplied image folders.
 - Added 276 original WebP project images using ASCII SEO slugs; the second image is the cover for each project.
@@ -414,7 +421,7 @@ Future edits should be merged directly into the site files and summarized here o
 
 ## Header Start a Project linked to WhatsApp
 - Changed the Start a Project button in the site header to open ASG WhatsApp directly.
-- Used WhatsApp number `+20 10 00336679`.
+- Used WhatsApp number `+20 10 40335522`.
 - English pages use the prefilled message: `Hi ASG, I would like to discuss a project.`
 - Arabic pages use the prefilled message: `مرحبًا ASG، أود مناقشة مشروع.`
 - Applied to header buttons only, including mobile-header/menu copies where present.
