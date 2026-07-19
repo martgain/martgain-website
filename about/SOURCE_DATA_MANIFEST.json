@@ -1,0 +1,51 @@
+{
+  "generated_on": "2026-07-15",
+  "source_of_truth": {
+    "project_index": "ASG Project Index - Reviewed and Organized.xlsx / المشروعات المنظمة",
+    "project_images_root": "ASG - Organized Project Data",
+    "partner_logos_root": "partnar logos"
+  },
+  "confirmed_company_data": {
+    "name": "ASG Engineering Consulting Group",
+    "whatsapp_display": "+20 10 40335522",
+    "whatsapp_num": "201040335522",
+    "email": "info@asg-llc-eg.com",
+    "address": "City Light Tower, Tanta, Egypt",
+    "base_url": "https://asg-llc-eg.com"
+  },
+  "published_content": {
+    "project_count": 39,
+    "project_image_count": 276,
+    "partner_logo_count": 34,
+    "visible_category_count": 6,
+    "source_collection_count": 7,
+    "project_page_shell": "/projects/index.html?project=<slug>&lang=<en|ar>",
+    "project_data": "/assets/js/projects-data.js",
+    "project_renderer": "/assets/js/projects-renderer.js",
+    "cover_rule": "Use the second source image when a project has at least two images."
+  },
+  "source_collections": [
+    "03 - ASG Commercial Interior Retails Portfolio",
+    "05 - ASG Compounds Portfolio",
+    "06 - ASG EXTERIOR VILLA.V1 Portfolio",
+    "07 - ASG EXTERIOR VILLA.V2 Portfolio",
+    "09 - ASG Hotels Portfolio",
+    "11 - ASG INTREIOR VILLA Portfolio",
+    "13 - ASG LANDSCAPE Portfolio"
+  ],
+  "quality_rules": {
+    "unsupported_fields_hidden": [
+      "location",
+      "scope",
+      "year",
+      "descriptions"
+    ],
+    "review_required_projects": [
+      "cho-cafe",
+      "mr-wassem-rest-house",
+      "mr-samir-attia"
+    ],
+    "withheld_index_rows_without_images": 248,
+    "notes": "Only projects with matching supplied image folders are published. Arabic titles are editorial translations of the supplied English project names; no unsupported project facts were invented."
+  }
+}
