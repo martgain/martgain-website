@@ -4872,3 +4872,8 @@ body[dir="rtl"] .hero-video-section::after{
     transition:none;
   }
 }
+
+
+/* Service card icon images */
+.icon-badge img{width:26px;height:26px;display:block;object-fit:contain;filter:none;}
+@media (max-width:640px){.icon-badge img{width:23px;height:23px;}}
