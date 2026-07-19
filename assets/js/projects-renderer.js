@@ -21,7 +21,6 @@
       evidenceTitle: 'Published from the reviewed ASG delivery',
       evidenceBody: 'The project name, portfolio category, and imagery come from the supplied organized project folder. Location, year, and service scope are intentionally omitted until confirmed.',
       gallery: 'Project gallery',
-      galleryIntro: 'Approved project images from the supplied ASG folder.',
       image: 'Image',
       related: 'Related projects',
       startEyebrow: 'Start the conversation',
@@ -44,7 +43,6 @@
       evidenceTitle: 'منشور من تسليم ASG المنظّم والمراجَع',
       evidenceBody: 'اسم المشروع وتصنيف البورتفوليو والصور مأخوذة من مجلد المشروع المنظّم المرسل. تم إخفاء الموقع والسنة ونطاق الخدمات لحين تأكيدها.',
       gallery: 'معرض المشروع',
-      galleryIntro: 'صور المشروع المعتمدة من مجلد ASG المرسل.',
       image: 'صورة',
       related: 'مشاريع ذات صلة',
       startEyebrow: 'ابدأ المحادثة',
@@ -253,6 +251,14 @@
     });
   }
 
+  function setProjectFooterCopy(lang){
+    const footerCopy = document.querySelector('footer .brand-footer')?.closest('div')?.querySelector('p');
+    if(!footerCopy) return;
+    footerCopy.textContent = lang === 'ar'
+      ? 'نحن فريق متنوع من المهندسين والمعماريين المبدعين، نؤمن بقوة التعاون، ويدفعنا الشغف وحب الاستكشاف، نتطلع دائماً لصناعة غد أفضل من خلال الهندسة والتصميم.'
+      : 'We are a multidisciplinary group of innovative architects and engineers empowered by collaboration, driven by curiosity, and guided by a vision for a better-engineered tomorrow.';
+  }
+
   function setProjectLanguageLinks(project, lang){
     const nextLang = lang === 'ar' ? 'en' : 'ar';
     document.querySelectorAll('[data-lang-switch]').forEach(link => {
@@ -294,6 +300,7 @@
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
     translateShell(lang);
+    setProjectFooterCopy(lang);
 
     if(!project){
       renderMissingProject(main, lang);
@@ -313,7 +320,7 @@
     main.innerHTML = `
       <section class="case-hero"><figure class="case-visual"><img alt="${escapeHtml(cover.alt[lang])}" fetchpriority="high" height="${cover.height}" src="${escapeHtml(absoluteUrl(cover.src))}" width="${cover.width}"></figure><div class="case-hero-copy"><span class="eyebrow">${escapeHtml(category)}</span><h1>${escapeHtml(title)}</h1><p>${escapeHtml(category)}</p></div></section>
       <section class="section"><div class="container narrow"><h2>${escapeHtml(copy[lang].projectOverview)}</h2><div class="overview-table"><div>${escapeHtml(copy[lang].category)}</div><div>${escapeHtml(category)}</div></div></div></section>
-      <section class="section"><div class="container section-head"><span class="eyebrow">${escapeHtml(copy[lang].gallery)}</span><h2>${escapeHtml(title)}</h2><p>${escapeHtml(copy[lang].galleryIntro)}</p></div><div class="container gallery-grid">${galleryMarkup(project, lang)}</div></section>
+      <section class="section"><div class="container section-head"><span class="eyebrow">${escapeHtml(copy[lang].gallery)}</span><h2>${escapeHtml(title)}</h2></div><div class="container gallery-grid">${galleryMarkup(project, lang)}</div></section>
       <section class="section section-soft"><div class="container section-head"><h2>${escapeHtml(copy[lang].related)}</h2></div><div class="container"><div class="project-grid" data-project-grid>${related.map(candidate => cardMarkup(candidate, lang)).join('')}</div></div></section>
       <section class="section cta-band"><div class="container split"><div><span class="eyebrow">${escapeHtml(copy[lang].startEyebrow)}</span><h2>${escapeHtml(copy[lang].startTitle)}</h2><p>${escapeHtml(copy[lang].startBody)}</p></div><div class="cta-actions"><a class="btn btn-invert" href="${escapeHtml(contactUrl)}">${escapeHtml(copy[lang].start)}</a><a class="btn btn-ghost-dark" href="${escapeHtml(whatsappUrl)}" rel="noopener" target="_blank">${escapeHtml(copy[lang].whatsapp)}</a></div></div></section>`;
   }

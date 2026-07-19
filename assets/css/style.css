@@ -4731,11 +4731,13 @@ body[dir="rtl"] .hero-video-section::after{
   width:calc(100% - 88px);
   margin-inline:auto;
   overflow:hidden;
+  direction:ltr;
 }
 
 .reviews-carousel-track{
   display:flex;
   align-items:stretch;
+  direction:ltr;
   transition:transform .32s cubic-bezier(.22,1,.36,1);
   will-change:transform;
 }
@@ -4753,6 +4755,11 @@ body[dir="rtl"] .hero-video-section::after{
   border-radius:var(--radius);
   padding:24px 26px;
   box-shadow:0 10px 30px rgba(0,0,0,.04);
+}
+
+[dir="rtl"] .review-card{
+  direction:rtl;
+  text-align:right;
 }
 
 .review-card blockquote{
